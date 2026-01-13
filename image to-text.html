@@ -1,127 +1,284 @@
-   
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Image to Text Tool</title>
+  <title>Pro Image to Text Converter</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
       background-color: #f0f8ff;
-      color: #000;
+      color: #333;
       margin: 0;
-      padding: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
     }
 
     .container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 1rem;
+      max-width: 700px;
+      width: 100%;
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 123, 255, 0.1);
     }
 
     h1 {
       text-align: center;
       color: #007bff;
+      margin-top: 0;
     }
 
     .upload-section {
-      background: #ffffff;
       border: 2px dashed #007bff;
+      background: #fdfdff;
       padding: 2rem;
       text-align: center;
-      border-radius: 10px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-bottom: 20px;
     }
 
-    input[type="file"] {
+    .upload-section:hover {
+      background: #f0f7ff;
+    }
+
+    .controls {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+
+    select {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #007bff;
+      border-radius: 8px;
+      font-size: 1rem;
+      background: white;
+      color: #007bff;
+    }
+
+    #previewContainer {
+      text-align: center;
+      margin-bottom: 20px;
       display: none;
     }
 
-    label[for="imageInput"] {
-      background-color: #007bff;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      cursor: pointer;
+    #previewImg {
+      max-width: 100%;
+      max-height: 200px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
     }
 
-    #output {
-      margin-top: 1rem;
-      background: #e6f0ff;
-      padding: 1rem;
-      border-radius: 5px;
-      white-space: pre-wrap;
+    /* Progress Bar */
+    #progressWrapper {
+      display: none;
+      background: #eee;
+      border-radius: 10px;
+      height: 10px;
+      width: 100%;
+      margin-bottom: 20px;
+      overflow: hidden;
     }
 
-    button.copy-btn {
-      margin-top: 0.5rem;
-      background-color: #007bff;
-      color: white;
+    #progressBar {
+      height: 100%;
+      width: 0%;
+      background: #007bff;
+      transition: width 0.2s;
+    }
+
+    #statusText {
+      font-size: 0.9rem;
+      color: #007bff;
+      text-align: center;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    textarea#output {
+      width: 100%;
+      height: 200px;
+      padding: 15px;
+      border: 1px solid #e6f0ff;
+      border-radius: 10px;
+      background-color: #f8fbff;
+      font-family: inherit;
+      font-size: 1rem;
+      line-height: 1.5;
+      resize: vertical;
+      box-sizing: border-box;
+      margin-bottom: 15px;
+      display: none;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    button {
+      flex: 1;
+      padding: 12px;
       border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
+      border-radius: 8px;
+      font-weight: bold;
       cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .copy-btn {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .copy-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .clear-btn {
+      background-color: #f8f9fa;
+      color: #666;
+      border: 1px solid #ddd;
+    }
+
+    .clear-btn:hover {
+      background-color: #e2e6ea;
     }
 
     @media (max-width: 600px) {
-      .container {
-        padding: 0.5rem;
-      }
-
-      .upload-section {
-        padding: 1rem;
-      }
+      .container { padding: 1rem; }
+      .controls { flex-direction: column; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Image to Text</h1>
-    <div class="upload-section">
-      <label for="imageInput">Upload Image</label>
-      <input type="file" id="imageInput" accept="image/*" />
-    </div>
-    <div id="output" style="display:none;"></div>
-    <button class="copy-btn" style="display:none;" onclick="copyText()">Copy Text</button>
+
+<div class="container">
+  <h1>Image to Text Pro</h1>
+
+  <div class="upload-section" onclick="document.getElementById('imageInput').click()">
+    <p id="uploadText">📄 Tap to Upload Image</p>
+    <input type="file" id="imageInput" accept="image/*" style="display:none" />
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@2.1.4/dist/tesseract.min.js"></script>
-  <script>
-    const imageInput = document.getElementById('imageInput');
-    const output = document.getElementById('output');
-    const copyBtn = document.querySelector('.copy-btn');
+  <div class="controls">
+    <label style="font-size: 0.9rem; font-weight: bold;">Select Language:</label>
+    <select id="langSelect">
+      <option value="eng">English</option>
+      <option value="hin">Hindi</option>
+      <option value="nep">Nepali</option>
+      <option value="spa">Spanish</option>
+      <option value="fra">French</option>
+    </select>
+  </div>
 
-    imageInput.addEventListener('change', async () => {
-      if (imageInput.files.length === 0) return;
+  <div id="previewContainer">
+    <img id="previewImg" src="#" alt="Preview" />
+  </div>
 
-      const file = imageInput.files[0];
-      const reader = new FileReader();
+  <div id="statusText"></div>
+  <div id="progressWrapper">
+    <div id="progressBar"></div>
+  </div>
 
-      reader.onload = async () => {
-        output.style.display = 'block';
-        output.textContent = 'Processing...';
+  <textarea id="output" placeholder="Extracted text will appear here..."></textarea>
 
-        try {
-          const result = await Tesseract.recognize(reader.result, 'eng');
-          output.textContent = result.data.text;
-          copyBtn.style.display = 'inline-block';
-        } catch (err) {
-          output.textContent = 'Error processing image.';
-          console.error(err);
+  <div class="btn-group" id="actionBtns" style="display: none;">
+    <button class="copy-btn" onclick="copyText()">Copy Text</button>
+    <button class="clear-btn" onclick="location.reload()">Clear All</button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@4.0.2/dist/tesseract.min.js"></script>
+<script>
+  const imageInput = document.getElementById('imageInput');
+  const output = document.getElementById('output');
+  const previewContainer = document.getElementById('previewContainer');
+  const previewImg = document.getElementById('previewImg');
+  const progressWrapper = document.getElementById('progressWrapper');
+  const progressBar = document.getElementById('progressBar');
+  const statusText = document.getElementById('statusText');
+  const actionBtns = document.getElementById('actionBtns');
+  const langSelect = document.getElementById('langSelect');
+
+  imageInput.addEventListener('change', async () => {
+    const file = imageInput.files[0];
+    if (!file) return;
+
+    // Show Preview
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      previewImg.src = e.target.result;
+      previewContainer.style.display = 'block';
+      startOCR(e.target.result);
+    };
+    reader.readAsDataURL(file);
+  });
+
+  async function startOCR(imageSrc) {
+    output.style.display = 'none';
+    actionBtns.style.display = 'none';
+    progressWrapper.style.display = 'block';
+    statusText.textContent = 'Initializing engine...';
+    
+    const selectedLang = langSelect.value;
+
+    try {
+      const worker = await Tesseract.createWorker({
+        logger: m => {
+          if (m.status === 'recognizing text') {
+            const progress = Math.round(m.progress * 100);
+            progressBar.style.width = progress + '%';
+            statusText.textContent = `Recognizing Text: ${progress}%`;
+          } else {
+            statusText.textContent = m.status;
+          }
         }
-      };
-
-      reader.readAsDataURL(file);
-    });
-
-    function copyText() {
-      const text = output.textContent;
-      navigator.clipboard.writeText(text).then(() => {
-        alert('Text copied to clipboard!');
       });
+
+      await worker.loadLanguage(selectedLang);
+      await worker.initialize(selectedLang);
+      
+      const { data: { text } } = await worker.recognize(imageSrc);
+      
+      await worker.terminate();
+
+      // Show Results
+      statusText.textContent = 'Extraction Complete!';
+      output.value = text;
+      output.style.display = 'block';
+      actionBtns.style.display = 'flex';
+      progressWrapper.style.display = 'none';
+
+    } catch (err) {
+      statusText.textContent = 'Error: Failed to process image.';
+      console.error(err);
     }
-  </script>
+  }
+
+  function copyText() {
+    output.select();
+    try {
+      // Modern copy
+      navigator.clipboard.writeText(output.value);
+      const copyBtn = document.querySelector('.copy-btn');
+      const originalText = copyBtn.textContent;
+      copyBtn.textContent = '✓ Copied!';
+      setTimeout(() => copyBtn.textContent = originalText, 2000);
+    } catch (err) {
+      // Fallback
+      document.execCommand('copy');
+      alert('Text copied!');
+    }
+  }
+</script>
+
 </body>
 </html>
-  
-  
+
