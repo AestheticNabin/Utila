@@ -1,86 +1,305 @@
-   
-  
-  <div style="text-align:center;">
-  <h2>Text Case Converter</h2>
-  <input type="text" id="inputArea" style="width:90%;max-width:500px;height:120px;padding:10px;font-size:16px;border-radius:8px;border:1px solid #ccc;" placeholder="Enter text here..."><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Professional Text Case Converter</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f8ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
 
-  <button onclick="toUpper()" style="margin:5px;padding:10px 15px;background:#007bff;color:#fff;border:none;border-radius:8px;">UPPERCASE</button>
-  <button onclick="toLower()" style="margin:5px;padding:10px 15px;background:#007bff;color:#fff;border:none;border-radius:8px;">lowercase</button>
-  <button onclick="toSentence()" style="margin:5px;padding:10px 15px;background:#007bff;color:#fff;border:none;border-radius:8px;">Sentence case</button>
-  <button onclick="toCapital()" style="margin:5px;padding:10px 15px;background:#007bff;color:#fff;border:none;border-radius:8px;">Capitalized Case</button>
-  <button onclick="clearText()" style="margin:5px;padding:10px 15px;background:#007bff;color:#fff;border:none;border-radius:8px;">Clear</button>
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 123, 255, 0.1);
+      width: 100%;
+      max-width: 700px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #333;
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    /* Professional Text Area */
+    .editor-wrapper {
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      padding: 15px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      resize: vertical;
+      box-sizing: border-box;
+      font-family: inherit;
+      outline: none;
+      transition: border 0.2s;
+      line-height: 1.5;
+    }
+
+    textarea:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    }
+
+    /* Stats Bar */
+    .stats-bar {
+      display: flex;
+      justify-content: space-between;
+      color: #666;
+      font-size: 13px;
+      margin-bottom: 20px;
+      padding: 0 5px;
+    }
+
+    /* Button Grid System */
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 12px;
+      font-size: 14px;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    /* Action Buttons (Copy/Clear) */
+    .actions {
+      display: flex;
+      gap: 10px;
+      border-top: 1px solid #eee;
+      padding-top: 20px;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #007bff;
+      color: #007bff;
+      flex: 1;
+    }
+
+    .btn-outline:hover {
+      background: #f0f8ff;
+      color: #0056b3;
+    }
+
+    .btn-danger {
+      background: transparent;
+      border: 1px solid #dc3545;
+      color: #dc3545;
+      flex: 0.5;
+    }
+
+    .btn-danger:hover {
+      background: #dc3545;
+      color: white;
+    }
+
+    /* Toast Notification */
+    #toast {
+      visibility: hidden;
+      min-width: 200px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 4px;
+      padding: 10px;
+      position: fixed;
+      z-index: 1;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+    }
+
+    #toast.show {
+      visibility: visible;
+      animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+
+    @keyframes fadein {
+      from {bottom: 0; opacity: 0;}
+      to {bottom: 30px; opacity: 1;}
+    }
+
+    @keyframes fadeout {
+      from {bottom: 30px; opacity: 1;}
+      to {bottom: 0; opacity: 0;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Text Case Converter</h2>
+  
+  <div class="editor-wrapper">
+    <textarea id="inputArea" placeholder="Type or paste your content here..." oninput="window.updateStats()"></textarea>
+  </div>
+
+  <div class="stats-bar">
+    <span id="wordCount">0 Words</span>
+    <span id="charCount">0 Characters</span>
+    <span id="lineCount">0 Lines</span>
+  </div>
+
+  <div class="controls">
+    <button onclick="window.toUpper()">UPPERCASE</button>
+    <button onclick="window.toLower()">lowercase</button>
+    <button onclick="window.toSentence()">Sentence case</button>
+    <button onclick="window.toCapital()">Capitalized Case</button>
+    <button onclick="window.toAlternating()">aLtErNaTiNg cAsE</button>
+    <button onclick="window.toInverse()">InVeRsE CaSe</button>
+  </div>
+
+  <div class="actions">
+    <button class="btn-outline" onclick="window.copyText()">Copy to Clipboard</button>
+    <button class="btn-outline" onclick="window.downloadText()">Download .txt</button>
+    <button class="btn-danger" onclick="window.clearText()">Clear</button>
+  </div>
 </div>
 
-<script type="text/javascript">
-//<![CDATA[
-function toUpper() {
-  var t = document.getElementById("inputArea");
-  t.value = t.value.toUpperCase();
-}
+<div id="toast">Text copied to clipboard!</div>
 
-function toLower() {
-  var t = document.getElementById("inputArea");
-  t.value = t.value.toLowerCase();
-}
-
-function toSentence() {
-  var t = document.getElementById("inputArea");
-  let txt = t.value.toLowerCase();
-  t.value = txt.charAt(0).toUpperCase() + txt.slice(1);
-}
-
-function toCapital() {
-  var t = document.getElementById("inputArea");
-  let words = t.value.toLowerCase().split(" ");
-  for (let i = 0; i < words.length; i++) {
-    if (words[i]) {
-      words[i] = words[i][0].toUpperCase() + words[i].slice(1);
-    }
+<script>
+  // Helper to get element safely inside functions
+  function getInput() {
+    return document.getElementById("inputArea");
   }
-  t.value = words.join(" ");
-}
 
-function clearText() {
-  var t = document.getElementById("inputArea");
-  t.value = "";
-}
-//]]>
+  window.updateStats = function() {
+    const t = getInput();
+    if (!t) return;
+    const text = t.value;
+    const charCount = text.length;
+    const wordCount = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+    const lineCount = text.trim() === '' ? 0 : text.split(/\n/).length;
+
+    document.getElementById("charCount").innerText = `${charCount} Characters`;
+    document.getElementById("wordCount").innerText = `${wordCount} Words`;
+    document.getElementById("lineCount").innerText = `${lineCount} Lines`;
+  }
+
+  window.toUpper = function() {
+    const t = getInput();
+    t.value = t.value.toUpperCase();
+    window.updateStats();
+  }
+
+  window.toLower = function() {
+    const t = getInput();
+    t.value = t.value.toLowerCase();
+    window.updateStats();
+  }
+
+  window.toSentence = function() {
+    const t = getInput();
+    const text = t.value.toLowerCase();
+    // Capitalize first letter of string and any letter following a sentence terminator (.!?)
+    t.value = text.replace(/(^\s*\w|[\.\!\?]\s*\w)/g, function(c) {
+      return c.toUpperCase();
+    });
+    window.updateStats();
+  }
+
+  window.toCapital = function() {
+    const t = getInput();
+    // Capitalize the first letter of every word
+    t.value = t.value.toLowerCase().replace(/\b\w/g, function(l){ return l.toUpperCase() });
+    window.updateStats();
+  }
+
+  window.toAlternating = function() {
+    const t = getInput();
+    let chars = t.value.toLowerCase().split("");
+    for (let i = 0; i < chars.length; i += 2) {
+      chars[i] = chars[i].toUpperCase();
+    }
+    t.value = chars.join("");
+    window.updateStats();
+  }
+
+  window.toInverse = function() {
+    const t = getInput();
+    let chars = t.value.split("");
+    for (let i = 0; i < chars.length; i++) {
+      if (chars[i] === chars[i].toUpperCase()) {
+        chars[i] = chars[i].toLowerCase();
+      } else {
+        chars[i] = chars[i].toUpperCase();
+      }
+    }
+    t.value = chars.join("");
+    window.updateStats();
+  }
+
+  window.clearText = function() {
+    const t = getInput();
+    t.value = "";
+    window.updateStats();
+    t.focus();
+  }
+
+  window.copyText = function() {
+    const t = getInput();
+    if(!t.value) return;
+    t.select();
+    t.setSelectionRange(0, 99999); /* For mobile devices */
+    document.execCommand("copy");
+    
+    // Show Toast
+    const toast = document.getElementById("toast");
+    toast.className = "show";
+    setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+  }
+
+  window.downloadText = function() {
+    const t = getInput();
+    if(!t.value) return;
+    const blob = new Blob([t.value], { type: "text/plain" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "converted_text.txt";
+    link.click();
+    URL.revokeObjectURL(link.href);
+  }
 </script>
 
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #f0f8ff;
-    padding: 20px;
-    text-align: center;
-  }
+</body>
+</html>
 
-  input[type="text"] {
-    width: 90%;
-    max-width: 500px;
-    height: 120px;
-    padding: 10px;
-    font-size: 16px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-  }
 
-  button {
-    margin: 5px;
-    padding: 10px 15px;
-    font-size: 14px;
-    border: none;
-    background: #007bff;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-
-  button:hover {
-    background: #0056b3;
-  }
-</style>
-
-  
-  
