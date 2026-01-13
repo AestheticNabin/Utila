@@ -1,0 +1,265 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pro URL Encoder / Decoder</title>
+  <style>
+    /* Professional Blue & White Theme */
+    :root {
+      --primary: #007bff;
+      --primary-hover: #0056b3;
+      --bg: #f5faff;
+      --card-bg: #ffffff;
+      --border: #d1d9e0;
+      --text: #333;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      margin: 0;
+      padding: 40px 15px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .app-container {
+      background: var(--card-bg);
+      width: 100%;
+      max-width: 650px;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 12px 35px rgba(0, 123, 255, 0.1);
+    }
+
+    h2 {
+      color: var(--primary);
+      text-align: center;
+      margin-top: 0;
+      font-weight: 700;
+      margin-bottom: 25px;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .label {
+      font-size: 13px;
+      font-weight: 700;
+      color: #666;
+      text-transform: uppercase;
+    }
+
+    #urlInput {
+      width: 100%;
+      min-height: 120px;
+      background: #ffffff;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 15px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      white-space: pre-wrap;
+      outline: none;
+      overflow-y: auto;
+      box-sizing: border-box;
+      transition: border-color 0.3s;
+    }
+
+    #urlInput:focus {
+      border-color: var(--primary);
+    }
+
+    #urlInput:empty:before {
+      content: attr(placeholder);
+      color: #aaa;
+    }
+
+    .button-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    button {
+      padding: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-main {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .btn-main:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border: 1px solid var(--border);
+      color: #555;
+    }
+
+    .btn-outline:hover {
+      background-color: #f8f9fa;
+    }
+
+    #result-container {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .result-card {
+      background: #f0f7ff;
+      border-radius: 12px;
+      border: 1px solid #cce5ff;
+      overflow: hidden;
+    }
+
+    .result-header {
+      padding: 10px 15px;
+      background: #e1f0ff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    #result {
+      padding: 15px;
+      font-size: 15px;
+      color: var(--text);
+      word-break: break-all;
+      white-space: pre-wrap;
+      line-height: 1.5;
+      font-family: 'SF Mono', 'Courier New', monospace;
+    }
+
+    .status-toast {
+      position: fixed;
+      bottom: 20px;
+      background: #333;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      display: none;
+      font-size: 14px;
+      z-index: 100;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <h2>URL Pro Tool</h2>
+
+    <div class="toolbar">
+      <span class="label">Input Content</span>
+      <button class="btn-outline" style="padding: 4px 10px; font-size: 12px;" onclick="pasteContent()">Paste</button>
+    </div>
+
+    <div id="urlInput" class="input-box" contenteditable="true" placeholder="Enter URL or text to process..."></div>
+
+    <div class="button-group">
+      <button class="btn-main" onclick="handleURL('encode')">Encode URL</button>
+      <button class="btn-main" onclick="handleURL('decode')">Decode URL</button>
+      <button class="btn-outline" style="grid-column: span 2;" onclick="clearInput()">Clear Everything</button>
+    </div>
+
+    <div id="result-container">
+      <div class="result-card">
+        <div class="result-header">
+          <span id="resultType">RESULT</span>
+          <span style="cursor:pointer; text-decoration: underline;" onclick="copyResult()">Copy Result</span>
+        </div>
+        <div id="result"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="status-toast"></div>
+
+  <script>
+    function showToast(msg) {
+      const toast = document.getElementById("toast");
+      toast.innerText = msg;
+      toast.style.display = "block";
+      setTimeout(() => { toast.style.display = "none"; }, 2500);
+    }
+
+    async function pasteContent() {
+      try {
+        const text = await navigator.clipboard.readText();
+        document.getElementById("urlInput").innerText = text;
+      } catch (err) {
+        showToast("Press Ctrl+V to paste manually");
+      }
+    }
+
+    function handleURL(mode) {
+      const input = document.getElementById("urlInput").innerText.trim();
+      const resultDiv = document.getElementById("result");
+      const container = document.getElementById("result-container");
+      const label = document.getElementById("resultType");
+
+      if (!input) {
+        showToast("Please enter text first!");
+        return;
+      }
+
+      try {
+        if (mode === 'encode') {
+          // Professional standard: encodeURIComponent for specific params
+          resultDiv.innerText = encodeURIComponent(input);
+          label.innerText = "ENCODED OUTPUT";
+        } else {
+          resultDiv.innerText = decodeURIComponent(input);
+          label.innerText = "DECODED OUTPUT";
+        }
+        container.style.display = "block";
+      } catch (e) {
+        resultDiv.innerText = "Error: Invalid input format.";
+        container.style.display = "block";
+      }
+    }
+
+    function clearInput() {
+      document.getElementById("urlInput").innerText = "";
+      document.getElementById("result-container").style.display = "none";
+    }
+
+    function copyResult() {
+      const text = document.getElementById("result").innerText;
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      document.body.appendChild(textArea);
+      textArea.select();
+      
+      try {
+        document.execCommand('copy');
+        showToast("Result copied to clipboard!");
+      } catch (err) {
+        showToast("Failed to copy.");
+      }
+      document.body.removeChild(textArea);
+    }
+  </script>
+
+</body>
+</html>
+
