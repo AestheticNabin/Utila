@@ -1,87 +1,267 @@
-   
-  <!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Text Shortener Tool</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Text Shortener Tool</title>
   <style>
+    /* Theme maintained: Light blue and white */
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
       background: #f0f8ff;
+      margin: 0;
       padding: 20px;
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .app-container {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 123, 255, 0.1);
+      width: 100%;
+      max-width: 600px;
     }
 
     h2 {
       color: #007bff;
       text-align: center;
+      margin-top: 0;
+      font-weight: 600;
     }
 
+    .input-section {
+      margin-bottom: 20px;
+    }
+
+    /* Professional Editor Styling */
     #textBox {
-      width: 90%;
-      max-width: 500px;
-      min-height: 150px;
-      padding: 10px;
+      width: 100%;
+      min-height: 180px;
+      padding: 15px;
       font-size: 16px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
+      line-height: 1.5;
+      border-radius: 12px;
+      border: 2px solid #e1e8ed;
       background: #fff;
-      margin-bottom: 15px;
       outline: none;
       overflow-y: auto;
       white-space: pre-wrap;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
+
+    #textBox:focus {
+      border-color: #007bff;
+    }
+
+    #textBox:empty:before {
+      content: attr(placeholder);
+      color: #adb5bd;
+    }
+
+    /* Controls Styling */
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .slider-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #f8fbff;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    input[type=range] {
+      flex-grow: 1;
+      cursor: pointer;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 10px;
     }
 
     button {
-      padding: 10px 20px;
-      font-size: 16px;
+      flex: 1;
+      padding: 12px;
+      font-size: 15px;
+      font-weight: 600;
       border: none;
-      background-color: #007bff;
-      color: white;
       border-radius: 8px;
       cursor: pointer;
-      margin-bottom: 15px;
+      transition: all 0.2s ease;
     }
 
-    button:hover {
+    .btn-main {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .btn-main:hover {
       background-color: #0056b3;
     }
 
-    #output {
-      font-size: 16px;
-      margin-top: 20px;
+    .btn-secondary {
+      background-color: #e9ecef;
+      color: #495057;
+    }
+
+    .btn-secondary:hover {
+      background-color: #dee2e6;
+    }
+
+    /* Statistics & Output Styling */
+    .info-bar {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: #6c757d;
+      margin-bottom: 5px;
+    }
+
+    #output-container {
+      display: none;
+      margin-top: 25px;
+      padding: 20px;
+      background: #f1f8ff;
+      border-radius: 12px;
+      border-left: 5px solid #007bff;
+      position: relative;
+    }
+
+    #output-text {
       color: #333;
+      font-size: 16px;
+      line-height: 1.6;
+      word-wrap: break-word;
+    }
+
+    .copy-toast {
+      position: fixed;
+      bottom: 20px;
+      background: #333;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      display: none;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
 
-  <h2>Text Shortener Tool</h2>
+  <div class="app-container">
+    <h2>Text Shortener Pro</h2>
 
-  <div id="textBox" contenteditable="true" placeholder="Paste or type your text here..."></div>
+    <div class="input-section">
+      <div class="info-bar">
+        <span>Input Text</span>
+        <span>Chars: <span id="charCount">0</span></span>
+      </div>
+      <div id="textBox" contenteditable="true" placeholder="Paste or type your content here..." oninput="updateStats()"></div>
+    </div>
 
-  <button onclick="shortenText()">Shorten Text</button>
+    <div class="controls">
+      <div class="slider-box">
+        <label style="font-size: 14px; min-width: 80px;">Limit: <b id="limitVal">100</b></label>
+        <input type="range" id="lengthSlider" min="10" max="500" value="100" oninput="updateLimitText()">
+      </div>
 
-  <div id="output"></div>
+      <div class="button-group">
+        <button class="btn-main" onclick="shortenText()">Shorten Now</button>
+        <button class="btn-secondary" onclick="clearAll()">Clear</button>
+      </div>
+    </div>
+
+    <div id="output-container">
+      <div class="info-bar">
+        <span style="color: #007bff; font-weight: bold;">RESULT</span>
+        <span style="cursor: pointer; color: #007bff;" onclick="copyResult()"><b>Copy Text</b></span>
+      </div>
+      <div id="output-text"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="copy-toast">Copied to clipboard!</div>
 
   <script>
+    function updateStats() {
+      const content = document.getElementById("textBox").innerText;
+      document.getElementById("charCount").innerText = content.length;
+    }
+
+    function updateLimitText() {
+      const val = document.getElementById("lengthSlider").value;
+      document.getElementById("limitVal").innerText = val;
+    }
+
     function shortenText() {
-      var content = document.getElementById("textBox").innerText.trim();
-      
-      if (content.length <= 100) {
-        document.getElementById("output").innerText = "Text is already short!";
+      const content = document.getElementById("textBox").innerText.trim();
+      const limit = parseInt(document.getElementById("lengthSlider").value);
+      const outputContainer = document.getElementById("output-container");
+      const outputText = document.getElementById("output-text");
+
+      if (!content) {
+        showToast("Please enter some text first!");
         return;
       }
+
+      if (content.length <= limit) {
+        outputText.innerText = content;
+      } else {
+        // Smart Truncation: Try to avoid cutting words in half
+        let truncated = content.substring(0, limit);
+        const lastSpace = truncated.lastIndexOf(" ");
+        
+        if (lastSpace > (limit * 0.8)) {
+            truncated = truncated.substring(0, lastSpace);
+        }
+        
+        outputText.innerText = truncated + "...";
+      }
+
+      outputContainer.style.display = "block";
+      outputContainer.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function clearAll() {
+      document.getElementById("textBox").innerText = "";
+      document.getElementById("output-container").style.display = "none";
+      updateStats();
+    }
+
+    function copyResult() {
+      const text = document.getElementById("output-text").innerText;
+      if (!text) return;
       
-      // Shorten text to the first 100 characters and add ellipsis
-      var shortened = content.substring(0, 100) + "...";
-      document.getElementById("output").innerText = "Shortened Text: " + shortened;
+      const el = document.createElement('textarea');
+      el.value = text;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      
+      showToast("Copied to clipboard!");
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById("toast");
+      toast.innerText = msg;
+      toast.style.display = "block";
+      setTimeout(() => {
+        toast.style.display = "none";
+      }, 2500);
     }
   </script>
 
 </body>
 </html>
 
-  
-  
