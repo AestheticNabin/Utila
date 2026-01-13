@@ -1,0 +1,277 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pro Cipher Tool</title>
+  <style>
+    /* Professional Blue & White Theme */
+    :root {
+      --primary: #007bff;
+      --primary-dark: #0056b3;
+      --bg: #f0f8ff;
+      --card: #ffffff;
+      --border: #ced4da;
+      --text: #343a40;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .app-card {
+      background: var(--card);
+      width: 100%;
+      max-width: 600px;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 12px 30px rgba(0, 123, 255, 0.1);
+    }
+
+    h2 {
+      color: var(--primary);
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 25px;
+      font-weight: 700;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    .label-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #555;
+    }
+
+    #textBox {
+      width: 100%;
+      min-height: 150px;
+      padding: 15px;
+      font-size: 16px;
+      border: 2px solid #e9ecef;
+      border-radius: 12px;
+      outline: none;
+      transition: border-color 0.3s;
+      box-sizing: border-box;
+      white-space: pre-wrap;
+    }
+
+    #textBox:focus {
+      border-color: var(--primary);
+    }
+
+    #textBox:empty:before {
+      content: attr(placeholder);
+      color: #adb5bd;
+    }
+
+    .key-section {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .key-input-box {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    #shift {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    button {
+      padding: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border: 1px solid var(--border);
+      color: #666;
+    }
+
+    .btn-outline:hover {
+      background-color: #f8f9fa;
+    }
+
+    /* Output Styling */
+    #result-box {
+      margin-top: 25px;
+      padding: 20px;
+      background: #e7f3ff;
+      border-radius: 12px;
+      border-left: 5px solid var(--primary);
+      display: none;
+    }
+
+    .result-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 12px;
+      font-weight: bold;
+      color: var(--primary);
+      text-transform: uppercase;
+    }
+
+    #output {
+      font-size: 16px;
+      color: var(--text);
+      line-height: 1.5;
+      word-wrap: break-word;
+    }
+
+    .copy-btn {
+      color: var(--primary);
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .clear-btn {
+      grid-column: span 2;
+      margin-top: 5px;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="app-card">
+  <h2>Cipher Dashboard</h2>
+
+  <div class="input-group">
+    <div class="label-row">
+      <span>Message</span>
+      <span id="charCount">0 characters</span>
+    </div>
+    <div id="textBox" contenteditable="true" placeholder="Enter text to encrypt or decrypt..." oninput="updateStats()"></div>
+  </div>
+
+  <div class="key-section">
+    <div class="key-input-box">
+      <label for="shift" style="font-size: 12px; margin-bottom: 4px; color: #666;">Rotation Key (1-25)</label>
+      <input type="number" id="shift" value="3" min="1" max="25" />
+    </div>
+    <button class="btn-outline" style="padding: 8px 12px;" onclick="randomKey()">Random Key</button>
+  </div>
+
+  <div class="actions">
+    <button class="btn-primary" onclick="handleAction('encrypt')">Encrypt Text</button>
+    <button class="btn-primary" onclick="handleAction('decrypt')">Decrypt Text</button>
+    <button class="btn-outline clear-btn" onclick="resetAll()">Clear Dashboard</button>
+  </div>
+
+  <div id="result-box">
+    <div class="result-meta">
+      <span id="resultLabel">Result</span>
+      <span class="copy-btn" onclick="copyResult()">Copy Result</span>
+    </div>
+    <div id="output"></div>
+  </div>
+</div>
+
+<script>
+  function updateStats() {
+    const text = document.getElementById("textBox").innerText;
+    document.getElementById("charCount").innerText = text.length + " characters";
+  }
+
+  function randomKey() {
+    document.getElementById('shift').value = Math.floor(Math.random() * 25) + 1;
+  }
+
+  function caesarCipher(str, shift) {
+    // Ensure shift is within 0-25 range and handles negative values for decryption
+    shift = ((shift % 26) + 26) % 26;
+    
+    return str.split('').map(char => {
+      const code = char.charCodeAt(0);
+      // Uppercase
+      if (code >= 65 && code <= 90) {
+        return String.fromCharCode(((code - 65 + shift) % 26) + 65);
+      }
+      // Lowercase
+      else if (code >= 97 && code <= 122) {
+        return String.fromCharCode(((code - 97 + shift) % 26) + 97);
+      }
+      return char;
+    }).join('');
+  }
+
+  function handleAction(type) {
+    const content = document.getElementById("textBox").innerText.trim();
+    let shift = parseInt(document.getElementById("shift").value) || 0;
+    
+    if (!content) return;
+    
+    // For decryption, we rotate backwards
+    const processed = type === 'encrypt' 
+      ? caesarCipher(content, shift) 
+      : caesarCipher(content, -shift);
+
+    document.getElementById("resultLabel").innerText = type + "ed Result";
+    document.getElementById("output").innerText = processed;
+    document.getElementById("result-box").style.display = "block";
+  }
+
+  function resetAll() {
+    document.getElementById("textBox").innerText = "";
+    document.getElementById("result-box").style.display = "none";
+    updateStats();
+  }
+
+  function copyResult() {
+    const text = document.getElementById("output").innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const copyBtn = document.querySelector(".copy-btn");
+      copyBtn.innerText = "✓ Copied";
+      setTimeout(() => { copyBtn.innerText = "Copy Result"; }, 2000);
+    });
+  }
+</script>
+
+</body>
+</html>
+
