@@ -1,84 +1,371 @@
-   
-
-  <!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Word and Character Counter</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f0f8ff;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Word and Character Counter</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f8ff;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333;
+        }
 
-    h2 {
-      color: #007bff;
-    }
+        .container {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            width: 95%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+        }
 
-    #textBox {
-      width: 90%;
-      max-width: 500px;
-      min-height: 120px;
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      background: #fff;
-      margin-bottom: 15px;
-      outline: none;
-      overflow-y: auto;
-    }
+        .header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
 
-    button {
-      margin: 5px;
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      background: #007bff;
-      color: #fff;
-      border-radius: 8px;
-      cursor: pointer;
-    }
+        h2 {
+            color: #007bff;
+            margin: 0;
+            font-size: 24px;
+        }
 
-    button:hover {
-      background: #0056b3;
-    }
+        .subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
 
-    #output {
-      margin-top: 15px;
-      font-size: 18px;
-    }
-  </style>
+        #textBox {
+            width: 100%;
+            min-height: 250px;
+            max-height: 500px;
+            padding: 15px;
+            font-size: 16px;
+            line-height: 1.6;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            background: #fff;
+            margin-bottom: 1rem;
+            outline: none;
+            overflow-y: auto;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            box-sizing: border-box;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        #textBox:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+        }
+
+        [contenteditable]:empty:before {
+            content: attr(placeholder);
+            color: #aaa;
+            cursor: text;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            background: #007bff;
+            color: #fff;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        button:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+        }
+
+        button.secondary {
+            background: #6c757d;
+        }
+
+        button.danger {
+            background: #dc3545;
+        }
+
+        /* Stats Layout */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            width: 100%;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #eee;
+            transition: transform 0.2s;
+        }
+
+        .stat-card:hover {
+            border-color: #007bff;
+        }
+
+        .stat-label {
+            display: block;
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        /* Keyword analysis area */
+        .analysis-section {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .keyword-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .keyword-tag {
+            background: #e9ecef;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 13px;
+            color: #495057;
+        }
+
+        #toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+    </style>
 </head>
 <body>
 
-  <h2>Word and Character Counter</h2>
+  <div class="container">
+    <div class="header">
+        <h2>Content Insights Tool</h2>
+        <div class="subtitle">Real-time writing analysis and statistics</div>
+    </div>
 
-  <div id="textBox" contenteditable="true" placeholder="Enter your text here..."></div>
+    <div id="textBox" 
+         contenteditable="true" 
+         placeholder="Start typing or paste your text here..."
+         oninput="analyzeText()"></div>
 
-  <button onclick="countText()">Count Words & Characters</button>
+    <div class="button-group">
+      <button onclick="analyzeText()">
+        🔄 Recalculate
+      </button>
+      <button class="secondary" onclick="pasteFromClipboard()">
+        📋 Paste
+      </button>
+      <button class="secondary" onclick="copyToClipboard()">
+        📄 Copy
+      </button>
+      <button class="danger" onclick="clearText()">
+        🗑️ Clear
+      </button>
+    </div>
 
-  <div id="output">
-    <p><strong>Word Count:</strong> <span id="wordCount">0</span></p>
-    <p><strong>Character Count:</strong> <span id="charCount">0</span></p>
+    <div class="stats-container">
+        <div class="stat-card">
+            <span class="stat-label">Words</span>
+            <div id="wordCount" class="stat-value">0</div>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">Characters</span>
+            <div id="charCount" class="stat-value">0</div>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">Sentences</span>
+            <div id="sentenceCount" class="stat-value">0</div>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">Paragraphs</span>
+            <div id="paragraphCount" class="stat-value">0</div>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">Reading Time</span>
+            <div id="readingTime" class="stat-value">0m</div>
+        </div>
+    </div>
+
+    <div class="analysis-section" id="keywordSection" style="display:none;">
+        <span class="stat-label">Top Keywords (Density)</span>
+        <div class="keyword-list" id="keywordList"></div>
+    </div>
   </div>
 
-  <script>
-    function countText() {
-      var text = document.getElementById("textBox").innerText.trim();
-      var words = text.split(/\s+/).filter(Boolean);
-      var characters = text.length;
+  <div id="toast">Action completed!</div>
 
-      document.getElementById("wordCount").textContent = words.length;
-      document.getElementById("charCount").textContent = characters;
+  <script>
+    function analyzeText() {
+        const element = document.getElementById("textBox");
+        const text = element.innerText || "";
+        const cleanText = text.trim();
+
+        // 1. Words
+        const words = cleanText ? cleanText.split(/\s+/).filter(w => w.length > 0) : [];
+        
+        // 2. Characters
+        const characters = text.length;
+
+        // 3. Sentences (look for ., !, ?)
+        const sentences = cleanText ? cleanText.split(/[.!?]+/).filter(s => s.trim().length > 0) : [];
+
+        // 4. Paragraphs (look for double newlines or line breaks)
+        const paragraphs = cleanText ? cleanText.split(/\n+/).filter(p => p.trim().length > 0) : [];
+
+        // 5. Reading Time (Avg 200 words per minute)
+        const minutes = Math.ceil(words.length / 200);
+        
+        // Update Stats
+        document.getElementById("wordCount").textContent = words.length.toLocaleString();
+        document.getElementById("charCount").textContent = characters.toLocaleString();
+        document.getElementById("sentenceCount").textContent = sentences.length.toLocaleString();
+        document.getElementById("paragraphCount").textContent = paragraphs.length.toLocaleString();
+        document.getElementById("readingTime").textContent = words.length > 0 ? minutes + "m" : "0m";
+
+        // Keyword Density Analysis
+        updateKeywords(words);
     }
+
+    function updateKeywords(words) {
+        const section = document.getElementById("keywordSection");
+        const list = document.getElementById("keywordList");
+        
+        if (words.length < 5) {
+            section.style.display = "none";
+            return;
+        }
+
+        section.style.display = "block";
+        list.innerHTML = "";
+
+        // Simple frequency map (excluding common stop words)
+        const stopWords = ['the', 'is', 'at', 'which', 'on', 'and', 'a', 'an', 'to', 'in', 'of', 'for', 'it', 'with', 'as'];
+        const freq = {};
+        
+        words.forEach(w => {
+            const word = w.toLowerCase().replace(/[^a-z]/g, '');
+            if (word.length > 3 && !stopWords.includes(word)) {
+                freq[word] = (freq[word] || 0) + 1;
+            }
+        });
+
+        const sorted = Object.entries(freq)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 5);
+
+        if (sorted.length === 0) {
+            section.style.display = "none";
+            return;
+        }
+
+        sorted.forEach(([word, count]) => {
+            const span = document.createElement("span");
+            span.className = "keyword-tag";
+            span.textContent = `${word} (${count})`;
+            list.appendChild(span);
+        });
+    }
+
+    async function pasteFromClipboard() {
+        try {
+            const text = await navigator.clipboard.readText();
+            const box = document.getElementById("textBox");
+            box.innerText = text;
+            analyzeText();
+            showToast("Text pasted from clipboard");
+        } catch (err) {
+            showToast("Please use Ctrl+V to paste");
+        }
+    }
+
+    function clearText() {
+        const box = document.getElementById("textBox");
+        box.innerText = "";
+        analyzeText();
+        box.focus();
+    }
+
+    function copyToClipboard() {
+        const text = document.getElementById("textBox").innerText;
+        if (!text) return;
+
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            showToast("Copied to clipboard!");
+        } catch (err) {
+            console.error('Copy failed', err);
+        }
+        document.body.removeChild(textArea);
+    }
+
+    function showToast(msg) {
+        const toast = document.getElementById("toast");
+        toast.textContent = msg;
+        toast.style.display = "block";
+        setTimeout(() => {
+            toast.style.display = "none";
+        }, 2500);
+    }
+
+    // Initialize on load
+    window.onload = analyzeText;
   </script>
 
 </body>
 </html>
 
-  
-  
