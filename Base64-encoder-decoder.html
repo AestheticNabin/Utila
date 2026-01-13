@@ -1,0 +1,270 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pro Base64 Converter</title>
+  <style>
+    /* Professional Blue & White Theme */
+    :root {
+      --primary: #007bff;
+      --primary-hover: #0056b3;
+      --bg: #f0f8ff;
+      --card-bg: #ffffff;
+      --border: #d1d9e0;
+      --text-main: #333;
+      --success: #28a745;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      margin: 0;
+      padding: 30px 15px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .app-container {
+      background: var(--card-bg);
+      width: 100%;
+      max-width: 700px;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 123, 255, 0.1);
+    }
+
+    h2 {
+      color: var(--primary);
+      text-align: center;
+      margin-top: 0;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #555;
+    }
+
+    #inputBox {
+      width: 100%;
+      min-height: 150px;
+      padding: 15px;
+      font-size: 16px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+      outline: none;
+      box-sizing: border-box;
+      transition: border-color 0.3s;
+      white-space: pre-wrap;
+      overflow-y: auto;
+    }
+
+    #inputBox:focus {
+      border-color: var(--primary);
+    }
+
+    #inputBox:empty:before {
+      content: attr(placeholder);
+      color: #aaa;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    button {
+      flex: 1;
+      padding: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border: 1px solid var(--border);
+      color: #666;
+    }
+
+    .btn-outline:hover {
+      background-color: #f8f9fa;
+    }
+
+    /* Result Card */
+    #result-area {
+      display: none;
+      margin-top: 25px;
+      border-top: 1px solid #eee;
+      padding-top: 20px;
+    }
+
+    .result-card {
+      background: #f8fbff;
+      border-radius: 12px;
+      border: 1px solid #e1eefc;
+      overflow: hidden;
+    }
+
+    .result-header {
+      background: #eef6ff;
+      padding: 10px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      font-weight: bold;
+      color: var(--primary);
+      text-transform: uppercase;
+    }
+
+    #output {
+      padding: 15px;
+      font-family: 'SF Mono', 'Courier New', monospace;
+      font-size: 14px;
+      color: var(--text-main);
+      word-break: break-all;
+      white-space: pre-wrap;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .copy-link {
+      color: var(--primary);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .copy-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Utility Links */
+    .utils {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="app-container">
+  <h2>Base64 Pro Tool</h2>
+
+  <div class="toolbar">
+    <span>Input Text</span>
+    <span id="charCount" style="font-weight: normal; color: #888;">0 characters</span>
+  </div>
+  
+  <div id="inputBox" contenteditable="true" placeholder="Paste text or Base64 string here..." oninput="updateStats()"></div>
+
+  <div class="actions">
+    <button class="btn-primary" onclick="handleConvert('encode')">Encode</button>
+    <button class="btn-primary" onclick="handleConvert('decode')">Decode</button>
+  </div>
+
+  <div class="utils">
+    <button class="btn-outline" style="width: 100%;" onclick="clearAll()">Clear Everything</button>
+  </div>
+
+  <div id="result-area">
+    <div class="result-card">
+      <div class="result-header">
+        <span id="resultLabel">Result</span>
+        <span class="copy-link" id="copyBtn" onclick="copyResult()">Copy Result</span>
+      </div>
+      <div id="output"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function updateStats() {
+    const text = document.getElementById("inputBox").innerText;
+    document.getElementById("charCount").innerText = text.length + " characters";
+  }
+
+  // Professional UTF-8 safe encoding/decoding
+  function utf8_to_b64(str) {
+    return window.btoa(unescape(encodeURIComponent(str)));
+  }
+
+  function b64_to_utf8(str) {
+    return decodeURIComponent(escape(window.atob(str)));
+  }
+
+  function handleConvert(mode) {
+    const input = document.getElementById("inputBox").innerText.trim();
+    const outputDiv = document.getElementById("output");
+    const resultArea = document.getElementById("result-area");
+    const label = document.getElementById("resultLabel");
+
+    if (!input) return;
+
+    try {
+      if (mode === 'encode') {
+        outputDiv.innerText = utf8_to_b64(input);
+        label.innerText = "Base64 Encoded";
+      } else {
+        outputDiv.innerText = b64_to_utf8(input);
+        label.innerText = "Decoded Plain Text";
+      }
+      resultArea.style.display = "block";
+    } catch (e) {
+      outputDiv.innerText = "Error: Invalid input for " + mode + "ing.";
+      label.innerText = "Process Error";
+      resultArea.style.display = "block";
+    }
+  }
+
+  function clearAll() {
+    document.getElementById("inputBox").innerText = "";
+    document.getElementById("result-area").style.display = "none";
+    updateStats();
+  }
+
+  function copyResult() {
+    const text = document.getElementById("output").innerText;
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.select();
+    
+    try {
+      document.execCommand('copy');
+      const btn = document.getElementById("copyBtn");
+      btn.innerText = "✓ Copied";
+      setTimeout(() => { btn.innerText = "Copy Result"; }, 2000);
+    } catch (err) {
+      console.error('Copy failed');
+    }
+    document.body.removeChild(textArea);
+  }
+</script>
+
+</body>
+</html>
+
