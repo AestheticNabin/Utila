@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <link rel="icon" href="file_0000000034bc71fabff741102e79eb2b.png" type="image/x-icon">
@@ -18,28 +18,30 @@
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --rounded: 8px;
             --transition: all 0.3s ease;
+            --ai-purple: #8b5cf6;
+            --ai-dark-purple: #7c3aed;
         }
-
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
+        
         body {
             background-color: var(--bg-gray);
             color: var(--text-dark);
             line-height: 1.6;
         }
-
+        
         .container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
+        
         /* Header */
         header {
             background-color: var(--white);
@@ -49,41 +51,41 @@
             z-index: 100;
             padding: 15px 0;
         }
-
+        
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
+        
         .logo {
             font-size: 24px;
             font-weight: 700;
             color: var(--primary-blue);
             text-decoration: none;
         }
-
+        
         .logo span {
             color: var(--text-dark);
         }
-
+        
         nav ul {
             display: flex;
             list-style: none;
             gap: 25px;
         }
-
+        
         nav ul li a {
             text-decoration: none;
             color: var(--text-dark);
             font-weight: 500;
             transition: var(--transition);
         }
-
+        
         nav ul li a:hover {
             color: var(--primary-blue);
         }
-
+        
         .contact-email {
             display: flex;
             align-items: center;
@@ -91,11 +93,11 @@
             color: var(--text-light);
             font-size: 14px;
         }
-
+        
         .contact-email i {
             color: var(--primary-blue);
         }
-
+        
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -104,7 +106,7 @@
             color: var(--primary-blue);
             cursor: pointer;
         }
-
+        
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
@@ -112,20 +114,20 @@
             padding: 80px 0;
             text-align: center;
         }
-
+        
         .hero h1 {
             font-size: 2.5rem;
             margin-bottom: 20px;
             line-height: 1.2;
         }
-
+        
         .hero p {
             font-size: 1.1rem;
             max-width: 700px;
             margin: 0 auto 30px;
             opacity: 0.9;
         }
-
+        
         .cta-button {
             display: inline-block;
             background-color: var(--white);
@@ -137,12 +139,12 @@
             transition: var(--transition);
             margin-bottom: 40px;
         }
-
+        
         .cta-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
-
+        
         .tool-icons {
             display: flex;
             justify-content: center;
@@ -151,7 +153,7 @@
             max-width: 800px;
             margin: 0 auto;
         }
-
+        
         .tool-icon {
             background-color: rgba(255, 255, 255, 0.1);
             width: 60px;
@@ -162,7 +164,7 @@
             justify-content: center;
             font-size: 24px;
         }
-
+        
         /* Search */
         .search-section {
             padding: 30px 0;
@@ -176,17 +178,17 @@
             margin-left: auto;
             margin-right: auto;
         }
-
+        
         .search-container {
             padding: 0 20px;
         }
-
+        
         .search-bar {
             display: flex;
             max-width: 700px;
             margin: 0 auto;
         }
-
+        
         .search-bar input {
             flex: 1;
             padding: 15px 20px;
@@ -196,11 +198,11 @@
             outline: none;
             transition: var(--transition);
         }
-
+        
         .search-bar input:focus {
             border-color: var(--primary-blue);
         }
-
+        
         .search-bar button {
             background-color: var(--primary-blue);
             color: var(--white);
@@ -210,39 +212,39 @@
             cursor: pointer;
             transition: var(--transition);
         }
-
+        
         .search-bar button:hover {
             background-color: var(--dark-blue);
         }
-
+        
         /* Tools Sections */
         .tools-section {
             padding: 60px 0;
         }
-
+        
         .section-header {
             text-align: center;
             margin-bottom: 40px;
         }
-
+        
         .section-header h2 {
             font-size: 1.8rem;
             margin-bottom: 10px;
             color: var(--text-dark);
         }
-
+        
         .section-header p {
             color: var(--text-light);
             max-width: 600px;
             margin: 0 auto;
         }
-
+        
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 25px;
         }
-
+        
         .tool-card {
             background-color: var(--white);
             border-radius: var(--rounded);
@@ -250,12 +252,12 @@
             box-shadow: var(--shadow);
             transition: var(--transition);
         }
-
+        
         .tool-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
-
+        
         .tool-icon-container {
             width: 50px;
             height: 50px;
@@ -268,18 +270,18 @@
             color: var(--primary-blue);
             font-size: 20px;
         }
-
+        
         .tool-card h3 {
             font-size: 1.1rem;
             margin-bottom: 10px;
         }
-
+        
         .tool-card p {
             color: var(--text-light);
             font-size: 0.9rem;
             margin-bottom: 20px;
         }
-
+        
         .tool-button {
             display: inline-block;
             background-color: var(--primary-blue);
@@ -291,25 +293,25 @@
             font-weight: 500;
             transition: var(--transition);
         }
-
+        
         .tool-button:hover {
             background-color: var(--dark-blue);
         }
-
+        
         /* Footer */
         footer {
             background-color: var(--text-dark);
             color: var(--white);
             padding: 60px 0 30px;
         }
-
+        
         .footer-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
             margin-bottom: 40px;
         }
-
+        
         .footer-logo {
             font-size: 24px;
             font-weight: 700;
@@ -317,17 +319,17 @@
             margin-bottom: 15px;
             display: block;
         }
-
+        
         .footer-logo span {
             color: var(--light-blue);
         }
-
+        
         .footer-about p {
             opacity: 0.8;
             margin-bottom: 20px;
             font-size: 0.95rem;
         }
-
+        
         .footer-contact p {
             display: flex;
             align-items: center;
@@ -335,33 +337,33 @@
             margin-bottom: 15px;
             opacity: 0.8;
         }
-
+        
         .footer-links h3 {
             font-size: 1.1rem;
             margin-bottom: 20px;
             color: var(--light-blue);
         }
-
+        
         .footer-links ul {
             list-style: none;
         }
-
+        
         .footer-links ul li {
             margin-bottom: 10px;
         }
-
+        
         .footer-links ul li a {
             color: var(--white);
             text-decoration: none;
             opacity: 0.8;
             transition: var(--transition);
         }
-
+        
         .footer-links ul li a:hover {
             opacity: 1;
             color: var(--light-blue);
         }
-
+        
         .footer-bottom {
             text-align: center;
             padding-top: 30px;
@@ -410,449 +412,375 @@
         .search-results ul li a:hover {
             color: var(--primary-blue);
         }
-
-        /* Advanced AI Assistant Styles */
-        #aiAssistant {
+        
+        /* AI Assistant Styles */
+        .ai-assistant-container {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            width: 350px;
-            background: white;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-            border-radius: 15px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            z-index: 200;
-            border: none;
-            display: none;
-            overflow: hidden;
-            animation: slideIn 0.3s ease-out;
+            z-index: 1000;
         }
 
-        @keyframes slideIn {
-            from {
-                transform: translateY(100px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .ai-header {
-            background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 15px 15px 0 0;
-            font-weight: 600;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 12px rgba(30, 60, 114, 0.2);
-        }
-
-        #closeAIAssistant {
-            background: transparent;
-            border: none;
-            color: white;
-            font-size: 22px;
-            cursor: pointer;
-            padding: 0;
-            width: 28px;
-            height: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: var(--transition);
-        }
-
-        #closeAIAssistant:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: rotate(90deg);
-        }
-
-        #aiChatArea {
-            height: 300px;
-            overflow-y: auto;
-            padding: 15px;
-            font-size: 14px;
-            color: #333;
-            background: #f9fbfd;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        #aiForm {
-            display: flex;
-            border-top: 1px solid #e1e8f0;
-            padding: 15px;
-            background: white;
-        }
-
-        #aiInput {
-            flex: 1;
-            border: 2px solid #e1e8f0;
-            padding: 12px 15px;
-            font-size: 14px;
-            border-radius: 10px;
-            outline: none;
-            transition: all 0.3s;
-            background: #f9fbfd;
-        }
-
-        #aiInput:focus {
-            border-color: #2a5298;
-            box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
-        }
-
-        #aiForm button {
-            background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
-            border: none;
-            color: white;
-            padding: 0 20px;
-            margin-left: 10px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            border-radius: 10px;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 45px;
-        }
-
-        #aiForm button:hover {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.2);
-        }
-
-        .ai-message {
-            max-width: 85%;
-            padding: 12px 15px;
-            border-radius: 18px;
-            line-height: 1.5;
-            animation: fadeIn 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .user-message {
-            background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
-            color: white;
-            align-self: flex-end;
-            border-bottom-right-radius: 5px;
-        }
-
-        .ai-response {
-            background: white;
-            color: #333;
-            border: 1px solid #e1e8f0;
-            align-self: flex-start;
-            border-bottom-left-radius: 5px;
-        }
-
-        .ai-response i {
-            color: #2a5298;
-            margin-right: 8px;
-        }
-
-        .reasoning-section {
-            background: #f0f7ff;
-            border-left: 4px solid #2a5298;
-            padding: 12px;
-            margin-top: 10px;
-            border-radius: 0 10px 10px 0;
-            font-size: 0.9rem;
-            color: #1a365d;
-        }
-
-        .reasoning-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 6px;
-            font-weight: 600;
-            color: #1e3c72;
-            font-size: 0.85rem;
-        }
-
-        .reasoning-header i {
-            color: #2a5298;
-        }
-
-        .reasoning-content {
-            line-height: 1.4;
-        }
-
-        .typing-indicator {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 12px;
-            background: white;
-            border-radius: 18px;
-            width: fit-content;
-            border: 1px solid #e1e8f0;
-            margin-top: 5px;
-        }
-
-        .typing-dot {
-            width: 7px;
-            height: 7px;
-            background: #2a5298;
-            border-radius: 50%;
-            animation: typing 1.4s infinite ease-in-out;
-        }
-
-        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
-        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
-
-        @keyframes typing {
-            0%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-8px); }
-        }
-
-        .api-status {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.8rem;
-            opacity: 0.9;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background: #4caf50;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-
-        /* AI Toggle Button */
-        .ai-toggle-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
+        .ai-assistant-btn {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
-            color: white;
             border-radius: 50%;
+            background: linear-gradient(135deg, var(--ai-purple), var(--ai-dark-purple));
+            color: white;
+            border: none;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 24px;
             cursor: pointer;
-            box-shadow: 0 8px 25px rgba(30, 60, 114, 0.3);
-            z-index: 199;
-            transition: all 0.3s;
-            border: none;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+            transition: var(--transition);
         }
 
-        .ai-toggle-button:hover {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 12px 30px rgba(30, 60, 114, 0.4);
+        .ai-assistant-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
         }
 
-        .ai-toggle-button.hidden {
+        .ai-assistant-modal {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            background: white;
+            border-radius: var(--rounded);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             display: none;
+            flex-direction: column;
+            overflow: hidden;
         }
 
-        .quick-actions {
+        .ai-modal-header {
+            background: linear-gradient(135deg, var(--ai-purple), var(--ai-dark-purple));
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ai-modal-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            flex: 1;
+        }
+
+        .ai-close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        .ai-close-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .ai-modal-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ai-chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            max-height: 300px;
+            min-height: 200px;
+        }
+
+        .ai-message {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ai-message.user {
+            align-items: flex-end;
+        }
+
+        .ai-message.bot {
+            align-items: flex-start;
+        }
+
+        .message-bubble {
+            padding: 12px 16px;
+            border-radius: 18px;
+            max-width: 80%;
+            word-wrap: break-word;
+            line-height: 1.4;
+        }
+
+        .user .message-bubble {
+            background-color: var(--primary-blue);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .bot .message-bubble {
+            background-color: #f1f5f9;
+            color: var(--text-dark);
+            border-bottom-left-radius: 4px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .message-time {
+            font-size: 11px;
+            color: var(--text-light);
+            margin-top: 4px;
+            opacity: 0.7;
+        }
+
+        .ai-input-container {
+            padding: 15px 20px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            gap: 10px;
+            background: white;
+        }
+
+        .ai-input-container input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--rounded);
+            font-size: 14px;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .ai-input-container input:focus {
+            border-color: var(--ai-purple);
+            box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.1);
+        }
+
+        .ai-input-container button {
+            background-color: var(--ai-purple);
+            color: white;
+            border: none;
+            border-radius: var(--rounded);
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ai-input-container button:hover {
+            background-color: var(--ai-dark-purple);
+        }
+
+        .quick-questions {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            padding: 10px 15px;
-            background: #f9fbfd;
-            border-top: 1px solid #e1e8f0;
+            padding: 15px 20px;
+            background-color: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
         }
 
-        .quick-btn {
-            background: #e8f0fe;
-            color: #2a5298;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 15px;
-            font-size: 0.8rem;
+        .quick-question {
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 12px;
             cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 500;
+            transition: var(--transition);
+            color: var(--text-dark);
         }
 
-        .quick-btn:hover {
-            background: #2a5298;
+        .quick-question:hover {
+            background-color: var(--ai-purple);
             color: white;
-            transform: translateY(-2px);
+            border-color: var(--ai-purple);
+            transform: translateY(-1px);
         }
 
-        /* Scrollbar styling */
-        #aiChatArea::-webkit-scrollbar {
-            width: 6px;
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 12px 16px;
+            align-items: center;
         }
 
-        #aiChatArea::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 4px;
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #cbd5e1;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
         }
 
-        #aiChatArea::-webkit-scrollbar-thumb {
-            background: #2a5298;
-            border-radius: 4px;
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
         }
 
-        #aiChatArea::-webkit-scrollbar-thumb:hover {
-            background: #1e3c72;
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
         }
 
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+                background-color: #cbd5e1;
+            }
+            30% {
+                transform: translateY(-8px);
+                background-color: var(--ai-purple);
+            }
+        }
+
+        /* Animation for tool cards */
+        .tool-card {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s ease;
+        }
+
+        .tool-card.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
         /* Responsive */
         @media (max-width: 992px) {
             .hero h1 {
                 font-size: 2.2rem;
             }
-
+            
             .tool-icon {
                 width: 50px;
                 height: 50px;
                 font-size: 20px;
             }
-
-            #aiAssistant {
-                width: 320px;
-            }
         }
-
+        
         @media (max-width: 768px) {
             .header-container {
                 flex-direction: column;
                 gap: 15px;
             }
-
+            
             nav ul {
                 gap: 15px;
             }
-
+            
             .hero {
                 padding: 60px 0;
             }
-
+            
             .hero h1 {
                 font-size: 2rem;
             }
-
+            
             .hero p {
                 font-size: 1rem;
             }
-
+            
             .tool-icons {
                 gap: 20px;
             }
-
+            
             .search-section {
                 margin-top: -30px;
             }
-
+            
             .section-header h2 {
                 font-size: 1.5rem;
             }
 
-            #aiAssistant {
-                width: 300px;
-                bottom: 10px;
+            .ai-assistant-modal {
+                width: calc(100vw - 40px);
                 right: 10px;
-                max-width: calc(100vw - 20px);
+                bottom: 70px;
             }
-
-            .ai-toggle-button {
-                bottom: 10px;
-                right: 10px;
-                width: 55px;
-                height: 55px;
-                font-size: 22px;
+            
+            .ai-assistant-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
             }
         }
-
+        
         @media (max-width: 576px) {
             .header-container {
                 flex-direction: row;
                 justify-content: space-between;
             }
-
+            
             nav {
                 display: none;
             }
-
+            
             .contact-email {
                 display: none;
             }
-
+            
             .mobile-menu-btn {
                 display: block;
             }
-
+            
             .hero h1 {
                 font-size: 1.8rem;
             }
-
+            
             .search-bar {
                 flex-direction: column;
             }
-
+            
             .search-bar input {
                 border-radius: var(--rounded);
                 margin-bottom: 10px;
             }
-
+            
             .search-bar button {
                 border-radius: var(--rounded);
                 padding: 15px;
             }
-
+            
             .tools-grid {
                 grid-template-columns: 1fr;
             }
-
+            
             .footer-container {
                 grid-template-columns: 1fr;
             }
 
-            #aiAssistant {
-                width: 95%;
-                right: 2.5%;
-                bottom: 10px;
-                max-width: 320px;
-            }
-
-            #aiChatArea {
-                height: 250px;
+            .ai-assistant-modal {
+                width: calc(100vw - 20px);
+                right: 10px;
             }
             
-            .ai-message {
-                max-width: 90%;
+            .quick-questions {
+                padding: 10px 15px;
+            }
+            
+            .quick-question {
+                padding: 6px 12px;
+                font-size: 11px;
             }
         }
     </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8786817991035084"
-        crossorigin="anonymous"></script>
+     crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
         <div class="container header-container">
             <a href="#" class="logo">Utila</a>
+            
             <nav>
                 <ul>
                     <li><a href="#home">Home</a></li>
@@ -860,24 +788,24 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
-
+            
             <div class="contact-email">
                 <i class="fas fa-envelope"></i>
                 <span>nbudha679@gmail.com</span>
             </div>
-
+            
             <button class="mobile-menu-btn">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </header>
-
+    
     <section class="hero" id="home">
         <div class="container">
             <h1>Your Daily Tools, All in One Place</h1>
             <p>Convert, calculate, compress, and simplify your everyday tasks — fast and free.</p>
             <a href="#tools" class="cta-button">Explore Tools</a>
-
+            
             <div class="tool-icons">
                 <div class="tool-icon">
                     <i class="fas fa-image"></i>
@@ -900,7 +828,7 @@
             </div>
         </div>
     </section>
-
+    
     <section class="search-section">
         <div class="search-container">
             <div class="search-bar">
@@ -910,18 +838,19 @@
             <div class="search-results" id="searchResults">
                 <h3>Search Results</h3>
                 <ul id="resultsList">
+                    <!-- Results will be added here -->
                 </ul>
             </div>
         </div>
     </section>
-
+    
     <section class="tools-section" id="tools">
         <div class="container">
             <div class="section-header">
                 <h2>🖼 Image Tools</h2>
                 <p>Edit, convert and optimize your images with our powerful tools</p>
             </div>
-
+            
             <div class="tools-grid">
                 <div class="tool-card">
                     <div class="tool-icon-container">
@@ -931,7 +860,7 @@
                     <p>Convert between JPG, PNG, GIF, WEBP and more formats</p>
                     <a href="image-converter.html" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-compress-alt"></i>
@@ -940,7 +869,7 @@
                     <p>Reduce image file size without losing quality</p>
                     <a href="image-compressor.html" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-expand-alt"></i>
@@ -949,7 +878,7 @@
                     <p>Resize images to any dimension while maintaining aspect ratio</p>
                     <a href="image-resizer.html" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-crop-alt"></i>
@@ -958,7 +887,7 @@
                     <p>Crop images to remove unwanted areas or focus on specific parts</p>
                     <a href="image-cropper.html" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-font"></i>
@@ -967,7 +896,7 @@
                     <p>Extract text from images with optical character recognition</p>
                     <a href="image to-text.html" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-sync-alt"></i>
@@ -979,14 +908,14 @@
             </div>
         </div>
     </section>
-
+    
     <section class="tools-section" style="background-color: #f1f5f9;">
         <div class="container">
             <div class="section-header">
                 <h2>📄 Document Tools</h2>
                 <p>Manage and convert your documents with ease</p>
             </div>
-
+            
             <div class="tools-grid">
                 <div class="tool-card">
                     <div class="tool-icon-container">
@@ -996,7 +925,7 @@
                     <p>Convert between PDF and Word documents seamlessly</p>
                     <a href="pdf to-word.html" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-file-archive"></i>
@@ -1005,7 +934,7 @@
                     <p>Reduce PDF file size while maintaining quality</p>
                     <a href="pdf-compressor.html" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-cut"></i>
@@ -1014,7 +943,7 @@
                     <p>Combine multiple PDFs or split pages from a PDF</p>
                     <a href="pdf-merger.html" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-exchange-alt"></i>
@@ -1023,7 +952,7 @@
                     <p>Convert between various document formats</p>
                     <a href="document-converter.html" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-lock"></i>
@@ -1032,7 +961,7 @@
                     <p>Add or remove passwords from PDF files</p>
                     <a href="lock-unlock-pdf.html" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-signature"></i>
@@ -1044,14 +973,14 @@
             </div>
         </div>
     </section>
-
+    
     <section class="tools-section">
         <div class="container">
             <div class="section-header">
                 <h2>🧮 Calculator Tools</h2>
                 <p>Perform various calculations for your daily needs</p>
             </div>
-
+            
             <div class="tools-grid">
                 <div class="tool-card">
                     <div class="tool-icon-container">
@@ -1061,7 +990,7 @@
                     <p>Advanced calculator with scientific functions</p>
                     <a href="scientific-calculator.html" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-birthday-cake"></i>
@@ -1070,7 +999,7 @@
                     <p>Calculate age from birth date to current date</p>
                     <a href="age-calculator.html" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-weight"></i>
@@ -1079,7 +1008,7 @@
                     <p>Calculate your Body Mass Index</p>
                     <a href="bmi-calculator.html" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-home"></i>
@@ -1088,7 +1017,7 @@
                     <p>Calculate Equated Monthly Installments for loans</p>
                     <a href="emi-calculator.html" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-percentage"></i>
@@ -1097,7 +1026,7 @@
                     <p>Calculate Goods and Services Tax amounts</p>
                     <a href="gst-calculator.html" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-money-bill-wave"></i>
@@ -1109,14 +1038,14 @@
             </div>
         </div>
     </section>
-
+    
     <section class="tools-section" style="background-color: #f1f5f9;">
         <div class="container">
             <div class="section-header">
                 <h2>🔤 Text Tools</h2>
                 <p>Manipulate and analyze text with our text processing tools</p>
             </div>
-
+            
             <div class="tools-grid">
                 <div class="tool-card">
                     <div class="tool-icon-container">
@@ -1126,7 +1055,7 @@
                     <p>Change text between uppercase, lowercase and more</p>
                     <a href="text-case-calculator.html" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-sort-amount-down"></i>
@@ -1135,7 +1064,7 @@
                     <p>Count words, characters, sentences and paragraphs</p>
                     <a href="word-and-character.html" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-filter"></i>
@@ -1144,7 +1073,7 @@
                     <p>Clean up text by removing duplicate lines</p>
                     <a href="remove-duplicate.html" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-sort-alpha-down"></i>
@@ -1153,7 +1082,7 @@
                     <p>Sort lines of text alphabetically or numerically</p>
                     <a href="text-shortener.html" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-undo"></i>
@@ -1162,7 +1091,7 @@
                     <p>Reverse text, words, or character order</p>
                     <a href="text-reverser.html" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-lock"></i>
@@ -1181,7 +1110,7 @@
                 <h2>🌐 Web/Developer Tools</h2>
                 <p>Essential tools for developers and webmasters</p>
             </div>
-
+            
             <div class="tools-grid">
                 <div class="tool-card">
                     <div class="tool-icon-container">
@@ -1191,7 +1120,7 @@
                     <p>Minify your code to reduce file size and improve performance</p>
                     <a href="html-minifier.html" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-brackets-curly"></i>
@@ -1200,7 +1129,7 @@
                     <p>Format and validate JSON data for readability and correctness</p>
                     <a href="json-formatter-and-validator.html" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-key"></i>
@@ -1209,7 +1138,7 @@
                     <p>Encode and decode Base64 strings and files</p>
                     <a href="Base64-encoder-decoder.html" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-link"></i>
@@ -1218,7 +1147,7 @@
                     <p>Encode or decode URLs to make them web-safe</p>
                     <a href="url-encoder-decoder.html" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-palette"></i>
@@ -1227,7 +1156,7 @@
                     <p>Pick colors and convert between different color formats</p>
                     <a href="color-picker-converter.html" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-regex"></i>
@@ -1246,7 +1175,7 @@
                 <h2>🎨 Color Tools</h2>
                 <p>Create, convert and analyze colors for your designs</p>
             </div>
-
+            
             <div class="tools-grid">
                 <div class="tool-card">
                     <div class="tool-icon-container">
@@ -1256,7 +1185,7 @@
                     <p>Extract color palettes from any uploaded image</p>
                     <a href="#" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-exchange-alt"></i>
@@ -1265,7 +1194,7 @@
                     <p>Convert between HEX and RGB color formats</p>
                     <a href="#" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-sliders-h"></i>
@@ -1274,7 +1203,7 @@
                     <p>Create beautiful CSS gradients with custom controls</p>
                     <a href="#" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-adjust"></i>
@@ -1283,7 +1212,7 @@
                     <p>Check color contrast ratios for accessibility standards</p>
                     <a href="#" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-swatchbook"></i>
@@ -1292,7 +1221,7 @@
                     <p>Generate harmonious color palettes for your projects</p>
                     <a href="#" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-low-vision"></i>
@@ -1311,7 +1240,7 @@
                 <h2>🌍 SEO & Marketing Tools</h2>
                 <p>Optimize your content and analyze your website performance</p>
             </div>
-
+            
             <div class="tools-grid">
                 <div class="tool-card">
                     <div class="tool-icon-container">
@@ -1321,7 +1250,7 @@
                     <p>Analyze keyword frequency and density in your content</p>
                     <a href="#" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-tags"></i>
@@ -1330,7 +1259,7 @@
                     <p>Check and analyze meta tags for SEO optimization</p>
                     <a href="#" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-font"></i>
@@ -1349,7 +1278,7 @@
                 <h2>🛠️ Utility Tools</h2>
                 <p>Handy tools for various everyday needs</p>
             </div>
-
+            
             <div class="tools-grid">
                 <div class="tool-card">
                     <div class="tool-icon-container">
@@ -1359,7 +1288,7 @@
                     <p>Create and scan QR codes for URLs, text, and more</p>
                     <a href="qr-generator.html" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-barcode"></i>
@@ -1368,7 +1297,7 @@
                     <p>Generate barcodes in various formats for products</p>
                     <a href="#" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-fingerprint"></i>
@@ -1377,7 +1306,7 @@
                     <p>Generate universally unique identifiers (UUIDs)</p>
                     <a href="#" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-ruler-combined"></i>
@@ -1386,7 +1315,7 @@
                     <p>Convert between various units of measurement</p>
                     <a href="#" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-globe"></i>
@@ -1395,7 +1324,7 @@
                     <p>Convert times between different time zones</p>
                     <a href="#" class="tool-button">Use Tool</a>
                 </div>
-
+                
                 <div class="tool-card">
                     <div class="tool-icon-container">
                         <i class="fas fa-random"></i>
@@ -1407,7 +1336,7 @@
             </div>
         </div>
     </section>
-
+    
     <footer id="contact">
         <div class="container">
             <div class="footer-container">
@@ -1415,12 +1344,12 @@
                     <a href="#" class="footer-logo">Utila</a>
                     <p>Simplifying your digital life with powerful, easy-to-use tools for all your needs.</p>
                 </div>
-
+                
                 <div class="footer-contact">
                     <h3>Contact Us</h3>
                     <p><i class="fas fa-envelope"></i> nbudha679@gmail.com</p>
                 </div>
-
+                
                 <div class="footer-links">
                     <h3>Quick Links</h3>
                     <ul>
@@ -1431,357 +1360,661 @@
                     </ul>
                 </div>
             </div>
-
+            
             <div class="footer-bottom">
                 <p>© 2023 Utila. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- AI Toggle Button -->
-    <button class="ai-toggle-button" id="aiToggleButton">
-        <i class="fas fa-robot"></i>
-    </button>
-
-    <!-- Advanced AI Assistance Widget -->
-    <div id="aiAssistant">
-        <div class="ai-header">
-            <div>
-                <span><i class="fas fa-brain"></i> AI Assistant</span>
-                <div class="api-status">
-                    <div class="status-dot"></div>
-                    <span>API Connected</span>
+    <!-- AI Assistant -->
+    <div class="ai-assistant-container">
+        <button class="ai-assistant-btn" id="aiAssistantBtn">
+            <i class="fas fa-robot"></i>
+        </button>
+        
+        <div class="ai-assistant-modal" id="aiAssistantModal">
+            <div class="ai-modal-header">
+                <i class="fas fa-robot"></i>
+                <h3>Utila AI Assistant</h3>
+                <button class="ai-close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="ai-modal-body">
+                <div class="ai-chat-messages" id="chatMessages">
+                    <!-- Messages will be added here -->
+                </div>
+                
+                <div class="quick-questions">
+                    <div class="quick-question" data-question="How to compress images?">Compress Images</div>
+                    <div class="quick-question" data-question="Convert PDF to Word">PDF to Word</div>
+                    <div class="quick-question" data-question="Best tool for text editing">Text Tools</div>
+                    <div class="quick-question" data-question="Calculate BMI">BMI Calculator</div>
+                </div>
+                
+                <div class="ai-input-container">
+                    <input type="text" id="aiInput" placeholder="Ask about our tools...">
+                    <button id="aiSendBtn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
                 </div>
             </div>
-            <button id="closeAIAssistant">&times;</button>
         </div>
-        
-        <div id="aiChatArea">
-            <div class="ai-message ai-response">
-                <i class="fas fa-robot"></i> Hello! I'm your AI assistant with reasoning capabilities. I can help you with any questions about the tools on this website. Try asking me something!
-            </div>
-        </div>
-        
-        <div class="quick-actions">
-            <button class="quick-btn" onclick="askQuickQuestion('What tools do you have for images?')">Image Tools</button>
-            <button class="quick-btn" onclick="askQuickQuestion('How can I convert PDF files?')">PDF Tools</button>
-            <button class="quick-btn" onclick="askQuickQuestion('What calculators are available?')">Calculators</button>
-            <button class="quick-btn" onclick="askQuickQuestion('Tell me about developer tools')">Dev Tools</button>
-        </div>
-        
-        <form id="aiForm">
-            <input type="text" id="aiInput" placeholder="Ask about any tool..." autocomplete="off" required>
-            <button type="submit"><i class="fas fa-paper-plane"></i></button>
-        </form>
     </div>
-
-    <script>
-        // Mobile menu toggle functionality
-        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-            const nav = document.querySelector('nav');
-            nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
-        });
-
-        // Search functionality
-        document.getElementById('searchButton').addEventListener('click', function() {
-            performSearch();
-        });
-
-        // Also search when Enter key is pressed
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                performSearch();
-            }
-        });
-
-        function performSearch() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const resultsContainer = document.getElementById('searchResults');
-            const resultsList = document.getElementById('resultsList');
-
-            // Clear previous results
-            resultsList.innerHTML = '';
-
-            if (searchTerm.trim() === '') {
-                resultsContainer.style.display = 'none';
-                return;
-            }
-
-            // Get all tool cards
-            const toolCards = document.querySelectorAll('.tool-card');
-            let foundResults = false;
-
-            toolCards.forEach(card => {
-                const toolName = card.querySelector('h3').textContent.toLowerCase();
-                const toolDesc = card.querySelector('p').textContent.toLowerCase();
-
-                if (toolName.includes(searchTerm) || toolDesc.includes(searchTerm)) {
-                    foundResults = true;
-                    const listItem = document.createElement('li');
-                    const link = document.createElement('a');
-                    link.href = '#' + card.closest('.tools-section').id;
-                    link.textContent = toolName;
-                    link.onclick = function() {
-                        // Scroll to the tool section
-                        card.scrollIntoView({ behavior: 'smooth' });
-                        // Highlight the card
-                        card.style.boxShadow = '0 0 0 3px var(--primary-blue)';
-                        setTimeout(() => {
-                            card.style.boxShadow = 'var(--shadow)';
-                        }, 2000);
-                        resultsContainer.style.display = 'none';
-                    };
-                    listItem.appendChild(link);
-                    resultsList.appendChild(listItem);
-                }
-            });
-
-            if (foundResults) {
-                resultsContainer.style.display = 'block';
-            } else {
-                const listItem = document.createElement('li');
-                listItem.textContent = 'No tools found matching your search.';
-                resultsList.appendChild(listItem);
-                resultsContainer.style.display = 'block';
-            }
-        }
-
-        // Close search results when clicking outside
-        document.addEventListener('click', function(event) {
-            const searchContainer = document.querySelector('.search-container');
-            if (!searchContainer.contains(event.target)) {
-                document.getElementById('searchResults').style.display = 'none';
-            }
-        });
-
-        // ==============================
-        // Advanced AI Assistant Functionality
-        // ==============================
-        
-        // DOM Elements
-        const aiAssistant = document.getElementById('aiAssistant');
-        const aiToggleButton = document.getElementById('aiToggleButton');
-        const closeBtn = document.getElementById('closeAIAssistant');
-        const aiForm = document.getElementById('aiForm');
-        const aiInput = document.getElementById('aiInput');
-        const aiChatArea = document.getElementById('aiChatArea');
-        
+    
+    <script type="module">
         // Configuration
-        const API_KEY = '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';
-        const API_URL = 'https://openrouter.ai/api/v1/chat/completions';
-        const MODEL = 'arcee-ai/trinity-large-preview:free';
-        
-        // Chat history for reasoning continuation
-        let chatHistory = [];
-        
-        // Toggle AI Assistant
-        aiToggleButton.addEventListener('click', () => {
-            if (aiAssistant.style.display === 'none' || aiAssistant.style.display === '') {
-                aiAssistant.style.display = 'block';
-                aiToggleButton.classList.add('hidden');
-                aiInput.focus();
-            }
-        });
-
-        // Close/hide assistant
-        closeBtn.addEventListener('click', () => {
-            aiAssistant.style.display = 'none';
-            aiToggleButton.classList.remove('hidden');
-        });
-
-        // Add message to chat area
-        function addMessage(content, isUser = false, reasoning = null) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `ai-message ${isUser ? 'user-message' : 'ai-response'}`;
+        const CONFIG = {
+            OPENROUTER_API_KEY: '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',
+            OPENROUTER_API_URL: 'https://openrouter.ai/api/v1/chat/completions',
+            SITE_URL: window.location.origin,
+            SITE_NAME: 'Utila Tools',
+            AI_MODEL: 'z-ai/glm-4.5-air:free',
             
-            if (isUser) {
-                messageDiv.textContent = content;
-            } else {
-                let messageHTML = `<i class="fas fa-robot"></i> ${content}`;
-                
-                // Add reasoning section if available
-                if (reasoning) {
-                    messageHTML += `
-                        <div class="reasoning-section">
-                            <div class="reasoning-header">
-                                <i class="fas fa-brain"></i>
-                                <span>Reasoning Process</span>
-                            </div>
-                            <div class="reasoning-content">${formatReasoning(reasoning)}</div>
-                        </div>
-                    `;
+            FALLBACK_RESPONSES: {
+                general: "Hello! I'm your Utila AI Assistant. I can help you find the right tool, explain how to use specific tools, answer questions about file formats, and provide tips for optimization. What would you like to know about our tools?",
+                tools: {
+                    image: "We offer comprehensive image tools including: Image Converter (JPG, PNG, GIF, WEBP), Image Compressor (reduce size without quality loss), Image Resizer (maintain aspect ratio), Image Cropper, Image to Text (OCR), and Image Rotator/Flipper. All tools are free and work in your browser!",
+                    pdf: "Our PDF tools include: PDF to Word converter, PDF Compressor, PDF Merger & Splitter, Document Converter, PDF Lock/Unlock (password protection), and eSign PDF. All processing happens locally for your privacy.",
+                    calculator: "Calculator tools available: Scientific Calculator, Age Calculator, BMI Calculator, Loan EMI Calculator, GST Calculator, and Currency Converter with live rates. Perfect for all your calculation needs!",
+                    text: "Text processing tools: Text Case Converter, Word & Character Counter, Remove Duplicate Lines, Text Sorter, Text Reverser, and Text Encryptor/Decryptor. Great for editing and analyzing text content.",
+                    web: "Web developer tools: HTML/CSS/JS Minifier, JSON Formatter & Validator, Base64 Encoder/Decoder, URL Encoder/Decoder, Color Picker & Converter, and Regex Tester. Essential for web development!",
+                    utility: "Utility tools: QR Code Generator & Scanner, Barcode Generator, UUID Generator, Unit Converter, Time Zone Converter, and Random Number/Password Generator. Handy tools for everyday use!"
                 }
-                
-                messageDiv.innerHTML = messageHTML;
             }
-            
-            aiChatArea.appendChild(messageDiv);
-            aiChatArea.scrollTop = aiChatArea.scrollHeight;
-        }
-        
-        // Format reasoning text for display
-        function formatReasoning(reasoning) {
-            if (typeof reasoning === 'string') {
-                return reasoning.replace(/\n/g, '<br>');
-            } else if (reasoning && reasoning.reasoning) {
-                return reasoning.reasoning.replace(/\n/g, '<br>');
-            }
-            return 'No reasoning details available';
-        }
-        
-        // Show typing indicator
-        function showTypingIndicator() {
-            const typingDiv = document.createElement('div');
-            typingDiv.className = 'typing-indicator';
-            typingDiv.id = 'typingIndicator';
-            typingDiv.innerHTML = `
-                <div class="typing-dot"></div>
-                <div class="typing-dot"></div>
-                <div class="typing-dot"></div>
-                <span style="margin-left: 10px; color: #666;">AI is thinking...</span>
-            `;
-            
-            aiChatArea.appendChild(typingDiv);
-            aiChatArea.scrollTop = aiChatArea.scrollHeight;
-        }
-        
-        // Remove typing indicator
-        function removeTypingIndicator() {
-            const typingIndicator = document.getElementById('typingIndicator');
-            if (typingIndicator) {
-                typingIndicator.remove();
+        };
+
+        // Type definitions
+        class AIMessage {
+            constructor(role, content) {
+                this.role = role;
+                this.content = content;
             }
         }
-        
-        // Send message to OpenRouter API with reasoning
-        async function sendToOpenRouter(messages, isFirstMessage = false) {
-            try {
-                const requestBody = {
-                    model: MODEL,
-                    messages: messages
+
+        class ToolCard {
+            constructor(name, description, category, element, link) {
+                this.name = name;
+                this.description = description;
+                this.category = category;
+                this.element = element;
+                this.link = link;
+            }
+        }
+
+        // Main AI Assistant Class
+        class AIAssistant {
+            constructor() {
+                this.state = {
+                    isOpen: false,
+                    messages: [
+                        new AIMessage('assistant', CONFIG.FALLBACK_RESPONSES.general)
+                    ],
+                    isLoading: false
                 };
                 
-                // Enable reasoning for first message
-                if (isFirstMessage) {
-                    requestBody.reasoning = { enabled: true };
-                }
+                this.tools = [];
+                this.isInitialized = false;
                 
-                const response = await fetch(API_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${API_KEY}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(requestBody)
+                this.initializeElements();
+                this.setupEventListeners();
+                this.collectTools();
+                this.renderMessages();
+            }
+            
+            initializeElements() {
+                // Get or create AI Assistant elements
+                this.chatMessages = document.getElementById('chatMessages');
+                this.aiInput = document.getElementById('aiInput');
+                this.modal = document.getElementById('aiAssistantModal');
+                this.btn = document.getElementById('aiAssistantBtn');
+                
+                if (!this.chatMessages) {
+                    console.error('AI Assistant elements not found!');
+                }
+            }
+            
+            setupEventListeners() {
+                // Toggle modal
+                this.btn?.addEventListener('click', () => this.toggleModal());
+                
+                // Close button
+                const closeBtn = this.modal?.querySelector('.ai-close-btn');
+                closeBtn?.addEventListener('click', () => this.closeModal());
+                
+                // Send message on button click
+                const sendBtn = document.getElementById('aiSendBtn');
+                sendBtn?.addEventListener('click', () => this.handleSendMessage());
+                
+                // Send message on Enter key
+                this.aiInput?.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.handleSendMessage();
+                    }
                 });
                 
-                if (!response.ok) {
-                    throw new Error(`API Error: ${response.status}`);
-                }
-                
-                const data = await response.json();
-                return data.choices[0].message;
-                
-            } catch (error) {
-                console.error('Error calling OpenRouter API:', error);
-                return {
-                    content: 'Sorry, I encountered an error. Please try again.',
-                    reasoning_details: null
-                };
-            }
-        }
-        
-        // Process user message
-        async function processUserMessage(message) {
-            // Add user message to chat
-            addMessage(message, true);
-            
-            // Add to chat history
-            chatHistory.push({
-                role: 'user',
-                content: message
-            });
-            
-            // Show typing indicator
-            showTypingIndicator();
-            
-            try {
-                // Determine if this is the first user message
-                const isFirstMessage = chatHistory.length === 1;
-                
-                // Send to OpenRouter API
-                const aiResponse = await sendToOpenRouter(chatHistory, isFirstMessage);
-                
-                // Remove typing indicator
-                removeTypingIndicator();
-                
-                // Add AI response to chat
-                addMessage(aiResponse.content, false, aiResponse.reasoning_details);
-                
-                // Add to chat history (including reasoning details for continuation)
-                chatHistory.push({
-                    role: 'assistant',
-                    content: aiResponse.content,
-                    reasoning_details: aiResponse.reasoning_details
+                // Quick questions
+                document.querySelectorAll('.quick-question').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const question = e.target.dataset.question;
+                        if (question) {
+                            this.aiInput.value = question;
+                            this.handleSendMessage();
+                        }
+                    });
                 });
                 
-            } catch (error) {
-                removeTypingIndicator();
-                addMessage('Sorry, I encountered an error processing your request. Please try again.', false);
+                // Close modal when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!this.modal?.contains(e.target) && 
+                        !this.btn?.contains(e.target) && 
+                        this.state.isOpen) {
+                        this.closeModal();
+                    }
+                });
             }
-        }
-        
-        // Send message handler
-        function sendMessage() {
-            const message = aiInput.value.trim();
             
-            if (!message) return;
-            
-            // Clear input
-            aiInput.value = '';
-            
-            // Process message
-            processUserMessage(message);
-        }
-        
-        // Quick question handler
-        function askQuickQuestion(question) {
-            aiInput.value = question;
-            sendMessage();
-        }
-        
-        // Handle form submit
-        aiForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            sendMessage();
-        });
-        
-        // Allow pressing Enter to send message
-        aiInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                aiForm.dispatchEvent(new Event('submit'));
+            collectTools() {
+                const toolCards = document.querySelectorAll('.tool-card');
+                
+                toolCards.forEach((card, index) => {
+                    const name = card.querySelector('h3')?.textContent || `Tool ${index + 1}`;
+                    const description = card.querySelector('p')?.textContent || '';
+                    const category = this.getToolCategory(card);
+                    const link = card.querySelector('.tool-button')?.getAttribute('href') || '#';
+                    
+                    this.tools.push(new ToolCard(name, description, category, card, link));
+                });
             }
-        });
-        
-        // Close AI assistant when clicking outside (on mobile)
-        document.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768 && 
-                aiAssistant.style.display === 'block' && 
-                !aiAssistant.contains(e.target) && 
-                !aiToggleButton.contains(e.target)) {
-                aiAssistant.style.display = 'none';
-                aiToggleButton.classList.remove('hidden');
+            
+            getToolCategory(card) {
+                const section = card.closest('.tools-section');
+                if (!section) return 'unknown';
+                
+                const header = section.querySelector('.section-header h2');
+                if (!header) return 'unknown';
+                
+                const text = header.textContent || '';
+                if (text.includes('🖼')) return 'image';
+                if (text.includes('📄')) return 'pdf';
+                if (text.includes('🧮')) return 'calculator';
+                if (text.includes('🔤')) return 'text';
+                if (text.includes('🌐')) return 'web';
+                if (text.includes('🎨')) return 'color';
+                if (text.includes('🌍')) return 'seo';
+                if (text.includes('🛠️')) return 'utility';
+                
+                return 'other';
             }
-        });
+            
+            async toggleModal() {
+                this.state.isOpen = !this.state.isOpen;
+                if (this.modal) {
+                    this.modal.style.display = this.state.isOpen ? 'flex' : 'none';
+                }
+                
+                if (this.state.isOpen && !this.isInitialized) {
+                    this.isInitialized = true;
+                }
+                
+                if (this.state.isOpen) {
+                    setTimeout(() => {
+                        this.scrollToBottom();
+                        this.aiInput?.focus();
+                    }, 100);
+                }
+            }
+            
+            closeModal() {
+                this.state.isOpen = false;
+                if (this.modal) {
+                    this.modal.style.display = 'none';
+                }
+            }
+            
+            async handleSendMessage() {
+                const message = this.aiInput?.value.trim();
+                if (!message || this.state.isLoading) return;
+                
+                // Add user message
+                this.addMessage(message, 'user');
+                this.aiInput.value = '';
+                this.state.isLoading = true;
+                this.showTypingIndicator();
+                
+                try {
+                    const response = await this.generateAIResponse(message);
+                    this.addMessage(response, 'assistant');
+                } catch (error) {
+                    console.error('AI Error:', error);
+                    this.addMessage(this.getFallbackResponse(message), 'assistant');
+                } finally {
+                    this.state.isLoading = false;
+                    this.removeTypingIndicator();
+                }
+            }
+            
+            async generateAIResponse(userMessage) {
+                // Create system prompt with tool context
+                const systemPrompt = `You are a helpful AI assistant for Utila Tools website. You help users find and use tools.
+                
+Available tool categories:
+${this.getToolsContext()}
 
-        // Expose quick question function globally for button clicks
-        window.askQuickQuestion = askQuickQuestion;
-        
-        // Initial welcome message with delay
-        setTimeout(() => {
-            addMessage("I can help you understand all the tools available on this website. Ask me about specific tools, how to use them, or any related questions!", false);
-        }, 1500);
+Instructions:
+1. Be concise and helpful (under 150 words)
+2. Focus on tool recommendations and usage
+3. If user asks about a specific tool, provide detailed info
+4. If user asks general questions, relate to available tools
+5. Format responses clearly with bullet points or short paragraphs
+6. Always be polite and professional
+7. Mention that all tools are free and work in the browser`;
+
+                try {
+                    const response = await fetch(CONFIG.OPENROUTER_API_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${CONFIG.OPENROUTER_API_KEY}`,
+                            'HTTP-Referer': CONFIG.SITE_URL,
+                            'X-Title': CONFIG.SITE_NAME,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            model: CONFIG.AI_MODEL,
+                            messages: [
+                                { role: 'system', content: systemPrompt },
+                                ...this.state.messages.map(msg => ({ role: msg.role, content: msg.content })),
+                                { role: 'user', content: userMessage }
+                            ],
+                            max_tokens: 500,
+                            temperature: 0.7,
+                            top_p: 0.9
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`API Error: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    return data.choices[0]?.message?.content || this.getFallbackResponse(userMessage);
+                    
+                } catch (error) {
+                    console.error('OpenRouter API Error:', error);
+                    return this.getFallbackResponse(userMessage);
+                }
+            }
+            
+            getToolsContext() {
+                const categories = {};
+                
+                this.tools.forEach(tool => {
+                    if (!categories[tool.category]) {
+                        categories[tool.category] = [];
+                    }
+                    categories[tool.category].push(tool.name);
+                });
+                
+                let context = '';
+                for (const [category, tools] of Object.entries(categories)) {
+                    context += `${category.charAt(0).toUpperCase() + category.slice(1)} Tools:\n`;
+                    tools.forEach(tool => {
+                        context += `- ${tool}\n`;
+                    });
+                    context += '\n';
+                }
+                
+                return context;
+            }
+            
+            getFallbackResponse(userMessage) {
+                const message = userMessage.toLowerCase();
+                
+                if (message.includes('image') || message.includes('picture') || message.includes('photo')) {
+                    return CONFIG.FALLBACK_RESPONSES.tools.image;
+                }
+                if (message.includes('pdf') || message.includes('document')) {
+                    return CONFIG.FALLBACK_RESPONSES.tools.pdf;
+                }
+                if (message.includes('calculat') || message.includes('bmi') || message.includes('emi')) {
+                    return CONFIG.FALLBACK_RESPONSES.tools.calculator;
+                }
+                if (message.includes('text') || message.includes('word') || message.includes('character')) {
+                    return CONFIG.FALLBACK_RESPONSES.tools.text;
+                }
+                if (message.includes('web') || message.includes('developer') || message.includes('code')) {
+                    return CONFIG.FALLBACK_RESPONSES.tools.web;
+                }
+                if (message.includes('utility') || message.includes('qr') || message.includes('barcode')) {
+                    return CONFIG.FALLBACK_RESPONSES.tools.utility;
+                }
+                
+                return CONFIG.FALLBACK_RESPONSES.general;
+            }
+            
+            addMessage(content, role) {
+                const message = new AIMessage(role, content);
+                this.state.messages.push(message);
+                
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `ai-message ${role}`;
+                
+                const bubble = document.createElement('div');
+                bubble.className = 'message-bubble';
+                bubble.innerHTML = content.replace(/\n/g, '<br>');
+                
+                const time = document.createElement('div');
+                time.className = 'message-time';
+                time.textContent = this.getCurrentTime();
+                
+                messageDiv.appendChild(bubble);
+                messageDiv.appendChild(time);
+                this.chatMessages.appendChild(messageDiv);
+                
+                this.scrollToBottom();
+            }
+            
+            renderMessages() {
+                if (!this.chatMessages) return;
+                
+                this.chatMessages.innerHTML = '';
+                this.state.messages.forEach(message => {
+                    this.addMessage(message.content, message.role);
+                });
+            }
+            
+            showTypingIndicator() {
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'typing-indicator';
+                typingDiv.id = 'typingIndicator';
+                
+                for (let i = 0; i < 3; i++) {
+                    const dot = document.createElement('div');
+                    dot.className = 'typing-dot';
+                    typingDiv.appendChild(dot);
+                }
+                
+                this.chatMessages.appendChild(typingDiv);
+                this.scrollToBottom();
+            }
+            
+            removeTypingIndicator() {
+                const typingIndicator = document.getElementById('typingIndicator');
+                if (typingIndicator) {
+                    typingIndicator.remove();
+                }
+            }
+            
+            getCurrentTime() {
+                const now = new Date();
+                return `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+            }
+            
+            scrollToBottom() {
+                if (this.chatMessages) {
+                    this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
+                }
+            }
+        }
+
+        // Search Manager Class
+        class SearchManager {
+            constructor() {
+                this.tools = [];
+                this.searchInput = document.getElementById('searchInput');
+                this.searchResults = document.getElementById('searchResults');
+                this.resultsList = document.getElementById('resultsList');
+                
+                this.collectTools();
+                this.setupEventListeners();
+            }
+            
+            collectTools() {
+                const toolCards = document.querySelectorAll('.tool-card');
+                
+                toolCards.forEach((card, index) => {
+                    const name = card.querySelector('h3')?.textContent || `Tool ${index + 1}`;
+                    const description = card.querySelector('p')?.textContent || '';
+                    const category = this.getToolCategory(card);
+                    const link = card.querySelector('.tool-button')?.getAttribute('href') || '#';
+                    
+                    this.tools.push(new ToolCard(name, description, category, card, link));
+                });
+            }
+            
+            getToolCategory(card) {
+                const section = card.closest('.tools-section');
+                if (!section) return 'unknown';
+                
+                const header = section.querySelector('.section-header h2');
+                if (!header) return 'unknown';
+                
+                const text = header.textContent || '';
+                if (text.includes('🖼')) return 'image';
+                if (text.includes('📄')) return 'pdf';
+                if (text.includes('🧮')) return 'calculator';
+                if (text.includes('🔤')) return 'text';
+                if (text.includes('🌐')) return 'web';
+                if (text.includes('🎨')) return 'color';
+                if (text.includes('🌍')) return 'seo';
+                if (text.includes('🛠️')) return 'utility';
+                
+                return 'other';
+            }
+            
+            setupEventListeners() {
+                const searchButton = document.getElementById('searchButton');
+                
+                if (searchButton) {
+                    searchButton.addEventListener('click', () => this.performSearch());
+                }
+                
+                this.searchInput?.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.performSearch();
+                    }
+                });
+
+                // Close search results when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!this.searchResults?.contains(e.target) && 
+                        !this.searchInput?.contains(e.target) &&
+                        !e.target.closest('#searchButton')) {
+                        this.closeResults();
+                    }
+                });
+            }
+            
+            performSearch() {
+                const searchTerm = this.searchInput?.value.toLowerCase().trim() || '';
+                if (!this.resultsList) return;
+                
+                this.resultsList.innerHTML = '';
+                
+                if (searchTerm === '') {
+                    this.closeResults();
+                    return;
+                }
+                
+                const matchingTools = this.tools.filter(tool => 
+                    tool.name.toLowerCase().includes(searchTerm) ||
+                    tool.description.toLowerCase().includes(searchTerm) ||
+                    tool.category.toLowerCase().includes(searchTerm)
+                );
+                
+                if (matchingTools.length > 0) {
+                    matchingTools.forEach(tool => {
+                        const listItem = document.createElement('li');
+                        const link = document.createElement('a');
+                        link.href = '#';
+                        link.textContent = `${tool.name} (${tool.category})`;
+                        
+                        link.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            this.highlightTool(tool);
+                            this.closeResults();
+                        });
+                        
+                        listItem.appendChild(link);
+                        this.resultsList.appendChild(listItem);
+                    });
+                    
+                    if (this.searchResults) {
+                        this.searchResults.style.display = 'block';
+                    }
+                } else {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = 'No tools found. Try different keywords.';
+                    this.resultsList.appendChild(listItem);
+                    if (this.searchResults) {
+                        this.searchResults.style.display = 'block';
+                    }
+                }
+            }
+            
+            highlightTool(tool) {
+                // Scroll to the tool
+                tool.element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Add highlight effect
+                tool.element.style.boxShadow = '0 0 0 3px var(--primary-blue)';
+                tool.element.style.transition = 'box-shadow 0.3s ease';
+                
+                // Remove highlight after 2 seconds
+                setTimeout(() => {
+                    tool.element.style.boxShadow = 'var(--shadow)';
+                }, 2000);
+            }
+            
+            closeResults() {
+                if (this.searchResults) {
+                    this.searchResults.style.display = 'none';
+                }
+            }
+        }
+
+        // Main Application Class
+        class UtilaApp {
+            constructor() {
+                this.aiAssistant = null;
+                this.searchManager = null;
+                this.mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+                
+                this.initialize();
+            }
+            
+            initialize() {
+                // Setup mobile menu
+                this.setupMobileMenu();
+                
+                // Setup smooth scroll
+                this.setupSmoothScroll();
+                
+                // Setup tool animations
+                this.setupToolAnimations();
+                
+                // Initialize AI Assistant
+                this.aiAssistant = new AIAssistant();
+                
+                // Initialize Search Manager
+                this.searchManager = new SearchManager();
+                
+                console.log('Utila App Initialized');
+            }
+            
+            setupMobileMenu() {
+                if (this.mobileMenuBtn) {
+                    this.mobileMenuBtn.addEventListener('click', () => {
+                        const nav = document.querySelector('nav');
+                        if (nav) {
+                            nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
+                        }
+                    });
+                }
+            }
+            
+            setupSmoothScroll() {
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', (e) => {
+                        const href = anchor.getAttribute('href');
+                        if (href === '#') return;
+                        
+                        const targetId = href?.substring(1);
+                        if (!targetId) return;
+                        
+                        const target = document.getElementById(targetId);
+                        if (target) {
+                            e.preventDefault();
+                            target.scrollIntoView({ behavior: 'smooth' });
+                            
+                            // Close mobile menu if open
+                            const nav = document.querySelector('nav');
+                            if (nav && window.innerWidth <= 576) {
+                                nav.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            }
+            
+            setupToolAnimations() {
+                const toolCards = document.querySelectorAll('.tool-card');
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('fade-in');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+                
+                toolCards.forEach(card => {
+                    observer.observe(card);
+                });
+            }
+            
+            // Public method to handle global search
+            performGlobalSearch(searchTerm) {
+                if (this.searchManager) {
+                    this.searchManager.performSearch();
+                }
+            }
+            
+            // Public method to open AI Assistant
+            openAIAssistant() {
+                if (this.aiAssistant) {
+                    this.aiAssistant.toggleModal();
+                }
+            }
+            
+            // Public method to ask AI a question
+            askAI(question) {
+                if (this.aiAssistant) {
+                    this.aiAssistant.toggleModal();
+                    setTimeout(() => {
+                        const aiInput = document.getElementById('aiInput');
+                        if (aiInput) {
+                            aiInput.value = question;
+                            this.aiAssistant.handleSendMessage();
+                        }
+                    }, 500);
+                }
+            }
+        }
+
+        // Initialize app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const app = new UtilaApp();
+            
+            // Make app available globally for debugging
+            window.UtilaApp = app;
+            
+            // Example: You can trigger AI assistant with specific questions
+            // app.askAI("How can I compress images?");
+        });
     </script>
 </body>
-                            </html
+                                                   </html>
